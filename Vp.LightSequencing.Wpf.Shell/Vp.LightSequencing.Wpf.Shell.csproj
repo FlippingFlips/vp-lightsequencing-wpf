@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7ABAFF5A-E7EF-4BA8-9B02-62EF54184E31}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Vp.LightSequencing.Wpf.Shell</RootNamespace>
+    <AssemblyName>VP Light Sequencing</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Basic-Lamp.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Resources\SequenceImages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\SequenceTypesHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\LightSeqImageConverter.cs" />
+    <Compile Include="Extensions\EnumBindingSourceExtension.cs" />
+    <Compile Include="Model\Sequence.cs" />
+    <Compile Include="Model\SequenceHelper.cs" />
+    <Compile Include="ViewModels\LightSequenceViewModel.cs" />
+    <Compile Include="ViewModels\ListUpdatedEvent.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="VP\Tables\LightSequencing%28VPX_10.7%29.vpx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Costura.Fody">
+      <Version>5.7.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="MahApps.Metro">
+      <Version>2.4.9</Version>
+    </PackageReference>
+    <PackageReference Include="Prism.Unity">
+      <Version>8.1.97</Version>
+    </PackageReference>
+    <PackageReference Include="Prism.Wpf">
+      <Version>8.1.97</Version>
+    </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody">
+      <Version>4.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.Json">
+      <Version>6.0.7</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\SeqAll.gif" />
+    <Resource Include="Image\SeqArcBottomLeftDown.gif" />
+    <Resource Include="Image\SeqArcBottomLeftUp.gif" />
+    <Resource Include="Image\SeqArcBottomRightDown.gif" />
+    <Resource Include="Image\SeqArcBottomRightUp.gif" />
+    <Resource Include="Image\SeqArcTopLeftDown.gif" />
+    <Resource Include="Image\SeqArcTopLeftUp.gif" />
+    <Resource Include="Image\SeqArcTopRightDown.gif" />
+    <Resource Include="Image\SeqArcTopRightUp.gif" />
+    <Resource Include="Image\SeqCircleIn.gif" />
+    <Resource Include="Image\SeqCircleOut.gif" />
+    <Resource Include="Image\SeqClockLeft.gif" />
+    <Resource Include="Image\SeqClockRight.gif" />
+    <Resource Include="Image\SeqDiagDownLeft.gif" />
+    <Resource Include="Image\SeqDiagDownRight.gif" />
+    <Resource Include="Image\SeqDiagUpLeft.gif" />
+    <Resource Include="Image\SeqDiagUpRight.gif" />
+    <Resource Include="Image\SeqDown.gif" />
+    <Resource Include="Image\SeqFanLeftDown.gif" />
+    <Resource Include="Image\SeqFanLeftUp.gif" />
+    <Resource Include="Image\SeqFanRightDown.gif" />
+    <Resource Include="Image\SeqFanRightUp.gif" />
+    <Resource Include="Image\SeqHatch1Horiz.gif" />
+    <Resource Include="Image\SeqHatch1Vert.gif" />
+    <Resource Include="Image\SeqHatch2Horiz.gif" />
+    <Resource Include="Image\SeqHatch2Vert.gif" />
+    <Resource Include="Image\SeqLeft.gif" />
+    <Resource Include="Image\SeqMiddleInHoriz.gif" />
+    <Resource Include="Image\SeqMiddleInVert.gif" />
+    <Resource Include="Image\SeqMiddleOutHoriz.gif" />
+    <Resource Include="Image\SeqMiddleOutVert.gif" />
+    <Resource Include="Image\SeqRadarLeft.gif" />
+    <Resource Include="Image\SeqRadarRight.gif" />
+    <Resource Include="Image\SeqRandom.gif" />
+    <Resource Include="Image\SeqRight.gif" />
+    <Resource Include="Image\SeqScrewLeft.gif" />
+    <Resource Include="Image\SeqScrewRight.gif" />
+    <Resource Include="Image\SeqStripe1Horiz.gif" />
+    <Resource Include="Image\SeqStripe1Vert.gif" />
+    <Resource Include="Image\SeqStripe2Horiz.gif" />
+    <Resource Include="Image\SeqStripe2Vert.gif" />
+    <Resource Include="Image\SeqUp.gif" />
+    <Resource Include="Image\SeqWiperLeft.gif" />
+    <Resource Include="Image\SeqWiperRight.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Basic-Lamp.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Light Sequencer.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Light Sequencer_files\black.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqblackknight.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqbumper.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqcenterpiece.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqcollection1.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqcollection2.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdialog.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r2_c7.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r2_c8.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r3_c1.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r3_c10.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r3_c2.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r3_c3.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r3_c4.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r3_c5.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r3_c6.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r3_c7.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r3_c8.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r3_c9.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r4_c1.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r4_c10.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r4_c2.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r4_c3.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r4_c4.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r4_c5.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r4_c6.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r4_c7.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r4_c8.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r4_c9.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r5_c1.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r5_c10.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r5_c2.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r5_c3.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r5_c4.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r5_c5.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r5_c6.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r5_c7.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r5_c8.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r5_c9.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r6_c10.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r7_c1.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r7_c2.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r7_c3.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r7_c4.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r7_c5.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r7_c6.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r7_c7.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r7_c8.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r7_c9.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r9_c1.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqdriver_r9_c2.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqeditoroptions.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqgridoptions.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqicon.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqlogo.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqtableelement.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\lightseqyellowlamp.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\wink.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Light Sequencer_files\wowvpaulogo.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

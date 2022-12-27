@@ -1,0 +1,1433 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0054)http://members.iinet.net.au/~cleathley/vplightseq.html -->
+<HTML><HEAD><TITLE>Blacks Web Site</TITLE><!-- #BeginTemplate "/Templates/blank.dwt" -->
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META 
+content="Black, Fortress, Arcade Emulators, Visual Pinball, Chris Leathley, Jeff Minter, Formula 1, Joanne Church">
+<META http-equiv=author content="Black (cleathley<removespam>@iinet.net.au)">
+<META http-equiv=distribution content=Global>
+<META content=document name=resource-type><!-- #BeginEditable "doctitle" --><!-- #EndEditable --><LINK 
+href="Light Sequencer_files/black.css" type=text/css rel=stylesheet>
+<META content="MSHTML 5.50.4522.1800" name=GENERATOR></HEAD>
+<BODY text=#000000 vLink=#444444 aLink=#ffffff link=#ffcc00 bgColor=#999999 
+leftMargin=0 topMargin=0><BR>
+<TABLE width="97%" align=center border=0>
+  <TBODY>
+  <TR>
+    <TD class=BodyText><!-- #BeginEditable "Body" -->
+      <P align=right><IMG height=115 src="Light Sequencer_files/wowvpaulogo.gif" 
+      width=643><BR></P>
+      <P><IMG height=56 src="Light Sequencer_files/lightseqlogo.gif" 
+      width=458></P>
+      <P>Visual Pinball contains a device called the 'Light Sequencer' (or LS 
+      for short). What this basically does is take a Visual Pinball collection 
+      of lights and runs a effect though the lights (in the collection) that you 
+      would see on a commercial pinball game. The effects the Light Sequencer 
+      has are full table effects, i.e.. It doesn't allow you to cycle though 
+      lights but it does do the more complex effects which make a pinball look 
+      good without coding hundreds if not thousands of script lines.</P>
+      <P>The Light Sequencer when running takes control of the lights you 
+      specify for it to use. It does this by overlaying the effect over the 
+      lights without affecting the true state of the light. As many scripts use 
+      lights for game conditionals (i.e.. If light = on then award bonus and 
+      turn light off) the Light Sequencer ensures that your script does not need 
+      to worry about whether or not the Sequencer is currently running. It is 
+      totally transparent to your table. Changing the value of a light while a 
+      sequence is running will not actually turn a light on or off (or even to 
+      blinking), but it will remember what the current state is so when the 
+      sequence is finished, the lights will be restored to the last set 
+      state.</P>
+      <P>Multiple Light Sequencer's can be placed on the table allowing for 
+      different sections of the table to have its own effects if needed (such as 
+      split playfield's) or effects which have use a different centre point 
+      (more of this in a bit). Each Light Sequencer can have it's own collection 
+      so you can use different Sequencer's to control different parts of the 
+      table. A light can also exist in multiple collections so there is no 
+      limitations about which lights can be where.</P>
+      <P>&nbsp;</P>
+      <P class=Heading>Adding a Light Sequencer to your table.</P>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD width="9%"><IMG height=52 
+            src="Light Sequencer_files/lightseqicon.gif" width=59></TD>
+          <TD width="91%">
+            <P class=BodyText>On the left hand tool palette, you will find a 
+            icon which looks like this. Click on it and place the element onto 
+            the table as you would do with any of the other types of table 
+            objects.</P>
+            <P class=BodyText>When you place it onto the table, it will generate 
+            2 icons which look like this.</P></TD></TR></TBODY></TABLE><BR>
+      <TABLE cellSpacing=0 cellPadding=0 align=center border=0>
+        <TBODY>
+        <TR>
+          <TD class=BodyText>
+            <DIV align=center><IMG height=173 
+            src="Light Sequencer_files/lightseqtableelement.gif" 
+            width=173><BR>The Main element of a<BR>Light Sequencer</DIV></TD>
+          <TD class=BodyText width=20>&nbsp; </TD>
+          <TD class=BodyText>
+            <DIV align=center><IMG height=173 
+            src="Light Sequencer_files/lightseqcenterpiece.gif" 
+            width=173><BR>The Centre point of the<BR>Light 
+        Sequencer</DIV></TD></TR></TBODY></TABLE><BR>
+      <TABLE cellSpacing=0 cellPadding=0 align=center border=0>
+        <TBODY>
+        <TR>
+          <TD class=BodyText vAlign=top align=left>
+            <P>If you click onto the main table element for the Light Sequencer. 
+            It will bring up the options. The light Sequencer is primary script 
+            driven so there isn't too many options to worry about in the 
+            editor</P>
+            <P><B class=BodyText>Name :</B> <SPAN class=CommentText>The objects 
+            name which is used to address the object though the 
+            script.</SPAN></P>
+            <P class=Heading>POSITION</P>
+            <P>Table X and Y Centre: <SPAN class=CommentText>The centre 
+            refernece point which the Light Sequencer uses to base all it's 
+            effects from.</SPAN></P>
+            <P class=Heading>STATE</P>
+            <P>Collection : <SPAN class=CommentText>The collection of lights / 
+            bumpers to use. (More of this in a minute). A Light Sequencer can 
+            only use a single collection and it cannot be changed during game 
+            play. If you want to use more than one collection, use multiple 
+            Light Sequencer's.</SPAN></P>
+            <P>Update Interval : <SPAN class=CommentText>The speed that the 
+            Light Sequencer Runs at. It is best to define this in the script as 
+            it is definable per effect. If you want all effects to run at a set 
+            speed then this is the place to do it.</SPAN></P>
+            <P class=Heading>MISC</P>
+            <P>Timer Interval : <SPAN class=CommentText>If enabled will call 
+            <I>LightSeqName</I>_Timer() in the script every n (interval) 
+            milliseconds.</SPAN></P>
+            <P>User Value : <SPAN class=CommentText>Holds any value put into it. 
+            It is not used by the Light Sequencer.</SPAN></P></TD>
+          <TD width=20>&nbsp;</TD>
+          <TD>
+            <DIV align=right><IMG height=339 
+            src="Light Sequencer_files/lightseqdialog.gif" 
+        width=163></DIV></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <HR noShade>
+
+      <P class=Heading>Setting Up a Collection for a Light Sequencer to use</P>
+      <P class=BodyText>As mentioned above the Light Sequencer uses a collection 
+      to store the details about which lights (and bumpers) to use. If you 
+      havn't not used 'Collections' before, don't worry. The Light Sequencer 
+      only uses it as a list of lights and you don't need to know how to use 
+      them at a script level.</P>
+      <P class=BodyText>Open up the collection manager and click on new.. Type 
+      in the name for which to want to call the collection.</P>
+      <P align=center><IMG height=311 
+      src="Light Sequencer_files/lightseqcollection1.gif" width=488></P>
+      <P>Click on 'Edit' which will bring up the following screen. In this 
+      screen select all the Lights and Bumpers that you want Light Sequencer to 
+      control when it performs an effect.</P>
+      <P align=center><IMG height=415 
+      src="Light Sequencer_files/lightseqcollection2.gif" width=361></P>
+      <P align=left>You don't need to select either 'Fire Events' or 'Suppress 
+      Events' and I recommend that you don't as if you are using Bumpers in a 
+      collection then you could accidentally turn off the hit event for 
+them.</P>
+      <P align=center>&nbsp;</P>
+      <HR noShade>
+
+      <P class=Heading>Things to be Careful of!</P>
+      <P class=BodyText>The Light Sequencer will work with any Light/Bumper 
+      placed onto the table (or the backglass) and will handle any width of 
+      table but it will NOT process lights which are placed off the table (in 
+      the table view in the editor).</P>
+      <TABLE cellSpacing=0 cellPadding=0 align=center border=0>
+        <TBODY>
+        <TR>
+          <TD class=BodyText vAlign=top>
+            <DIV align=center>
+            <P class=BodyText align=left>The LS works by subdividing the table 
+            into 20x20 unit cells (on a default table of 1000 x 2000 units this 
+            gives 5000 cells). Only 1 light is handled per cell so if a single 
+            cell contains 2 lights then only one of them will be processed. In 
+            order to test the positioning of the lights on your table you can 
+            set the editor grid to 20 units. </P>
+            <P class=BodyText align=left>I checked a lot of tables and couldn't 
+            find any tables which had lights that close to each other. If you do 
+            have lights very close to each other you can always use 2 Light 
+            Sequencer's with each light in a different collection.</P></DIV></TD>
+          <TD class=BodyText width=20>&nbsp; </TD>
+          <TD class=BodyText>
+            <DIV align=center><IMG height=96 
+            src="Light Sequencer_files/lightseqgridoptions.gif" 
+          width=162></DIV></TD></TR></TBODY></TABLE><BR>
+      <TABLE cellSpacing=0 cellPadding=0 align=center border=0>
+        <TBODY>
+        <TR>
+          <TD class=BodyText>
+            <DIV align=center><IMG height=225 
+            src="Light Sequencer_files/lightseqeditoroptions.gif" 
+            width=292></DIV></TD>
+          <TD class=BodyText width=20>&nbsp; </TD>
+          <TD class=BodyText vAlign=top>
+            <DIV align=left>Visual Pinball now has some editor tweaking options 
+            which you can set. One of the these options is the ability to place 
+            a small cross hair or cross in the centre of Lights and Bumpers. The 
+            cross hair is only shown for circular lights as custom definable 
+            lights already have a cross hair(or cross) which acts as the centre 
+            of the light (where the light comes from).</DIV></TD></TR></TBODY></TABLE>
+      <P>By turning on the Light Centre and the layout grid (set to 20) you can 
+      check each light and ensure that there is no more than one 'cross hair' in 
+      each cell of the grid.. For example..</P>
+      <TABLE cellSpacing=0 cellPadding=0 align=center border=0>
+        <TBODY>
+        <TR>
+          <TD class=BodyText>
+            <DIV align=center>
+            <P><IMG height=58 src="Light Sequencer_files/lightseqyellowlamp.gif" 
+            width=58></P>
+            <P><IMG height=155 src="Light Sequencer_files/lightseqbumper.gif" 
+            width=156></P>
+            <P>A standard Circular Light and Bumper. You can see exactly which 
+            grid cell it is in.</P></DIV></TD>
+          <TD class=BodyText width=20>&nbsp; </TD>
+          <TD class=BodyText vAlign=top>
+            <DIV align=left>
+            <P align=center><IMG height=257 
+            src="Light Sequencer_files/lightseqblackknight.gif" width=268></P>
+            <P align=center>The custom shaped lights from my BK2K table (Knights 
+            Helmet). As you can see each cross hair has its own grid cell and 
+            doesn't share with another light. </P></DIV></TD></TR></TBODY></TABLE>
+      <P class=Heading>&nbsp;</P>
+      <P class=Heading>The Light Sequencer Centre Reference Point</P>
+      <TABLE cellSpacing=0 cellPadding=0 align=center border=0>
+        <TBODY>
+        <TR>
+          <TD class=BodyText>
+            <DIV align=center>
+            <P><IMG height=173 
+            src="Light Sequencer_files/lightseqcenterpiece.gif" 
+            width=173><BR>The LS Centre Point</P></DIV></TD>
+          <TD class=BodyText width=20>&nbsp; </TD>
+          <TD class=BodyText vAlign=top align=left>
+            <DIV align=left>
+            <P align=left>The Light Sequencer has a centre reference point which 
+            is marked by the smaller LS icon with the cross hair in it. </P>
+            <P align=left>By centre reference I mean the point on the table 
+            which the LS uses as the centre point to base all effects on. For 
+            example the circle out effect will start at this point and circle 
+            out. </P>
+            <P align=left>Each LS can have it's own centre point to allow for 
+            different parts of the playfield to be highlighted during an effect. 
+            For example. BK2K will have some effects which use the very centre 
+            of the table as a starting point whilst other effects use the 
+            knights helmet as the start point.</P></DIV></TD></TR></TBODY></TABLE>
+      <P class=Heading>&nbsp;</P>
+      <HR noShade>
+
+      <P class=Heading>The Effects and How they Work</P>
+      <P class=BodyText>The Light Sequencer basically only follows fixed pattern 
+      effects which it has been programmed with (over 50 different effects) but 
+      each one can be tweaked slightly by specifying how fast it runs, any 
+      pauses between effects and repeating the effect. </P>
+      <P class=BodyText>These effects are processed as 'Head' effects. The 
+      'Head' effect is the main effect.. For example if you are turning all the 
+      lights on from the bottom of the playfield and moving upwards. The point 
+      at which the light turns on is where the 'head' of the effect is. The head 
+      will change from frame to frame as it moves up the playfield. </P>
+      <P class=BodyText>Each 'Head' effect can have a 'Tail' effect which 
+      follows the 'Head' effect and inverts the state to which the 'Head' sets a 
+      light.. For example. If as above you are turning on lights moving up, then 
+      the 'Tail' will turn them off. If the 'Head' turns them off, the 'Tail' 
+      will turn them on.</P>
+      <P class=BodyText>The Distance at which the 'Tail' follows the 'Head' is 
+      completely upto you or you may decide not to have a tail. The 'Tail' will 
+      always run at the same speed as the 'Head' and the effect and not 
+      classified as finished until both the 'Head'' &amp; ''Tail' have both 
+      finished.</P>
+      <P class=BodyText>&nbsp;</P>
+      <HR noShade>
+
+      <P class=Heading>How Do I use the Light Sequencer In My Table Script?</P>
+      <P class=BodyText>The actual Light Sequencer is very simple to use once 
+      the collection has been set up. It only has 2 script methods '.Play' 
+      and'.StopPlay', a Property ('.UpdateInterval') and one Event ('.PlayDone') 
+      to let you know when the Sequencer has finished.</P>
+      <P class=BodyText>&nbsp;</P>
+      <P class=Heading>Method: .Play Effect, TailLength, Repeat, Pause</P>
+      <BLOCKQUOTE>
+        <P>When you issue a play command. It basically puts it into a Queue. 
+        Thus you can load up the Sequencer with a heap of effects and it will 
+        process all of them. When the queue is empty it will let you know (by 
+        the '.PlayDone' Event) so you can either 'refill' the Sequencer or 
+        perform any other action your table requires. The size of the queue is 
+        100 effects.</P>
+        <P>[Tounge Twisting Mode On]<BR>When you issue a Play command to the 
+        Light Sequencer, it puts each light in it's collection into a special 
+        state where it will remember its current lit state (either on, off or 
+        blinking) but won't actually change state if you actively change it in 
+        the script (hope that makes sense ;-). At this point only the Light 
+        Sequencer can physically change the state of the light but any changes 
+        made by you to the light in the script are remembered, just not carried 
+        out. When the Light Sequencer has finished all the effects that is has 
+        in it's queue (or you tell it to stop with the .StopPlay method) then it 
+        will give control of the lights back to you and restore them to their 
+        current real state as set by you in the script). Even while an effect is 
+        running you can (in the script) get the real value of the light and not 
+        what the Light Sequencer has set it too. This effectively means that you 
+        don't have to worry about what the Sequencer is doing to your lights if 
+        you use (like many people including myself) light states to control the 
+        control logic of your code.<BR>[/Tongue Twisting Mode Off]</P>
+        <P>The Play command has 4 parameter's. Only the first one is required 
+        (mandatory). The others don't have to be specified and/or can be skipped 
+        if required. If you don't specify them then they will use their default 
+        value. The parameters are as follows</P>
+        <P><SPAN class=BodyText>Effect: (Required)</SPAN></P>
+        <BLOCKQUOTE>
+          <P>All Effects that the Light Sequencer has programmed into it are 
+          outlined below and they all begin with 'Seq'.</P></BLOCKQUOTE>
+        <P><SPAN class=BodyText>TailLength: (Default Value = 0)</SPAN></P>
+        <BLOCKQUOTE>
+          <P>As mentioned above each effect has a tail which basically follows 
+          behind inverting the effect. The value is specified in number of 
+          frames though by a quirk of fate ;-) it can be specified as a 
+          percentage of table. For example. A table has a height of 2000 units.. 
+          This effectively gives it a height of 100 cells once the Light 
+          Sequencer has subdivided it up. For each frame, the Light Sequencer 
+          moves to the next frame. As a value of 100 is really the full length 
+          of the table then we can say that the tail length is a percentage of 
+          the table. So setting it to 50 will cause the tail to start once the 
+          head has traversed 50 percent of the table. A value of 200 is 2 
+          lengths of the table.. For effects which are based around the width of 
+          the table the Light Sequencer will adjust the TailLength so 50 is 50% 
+          of the Width (and not 50% of the height)..<BR>Confused!.. (So am I 
+          ;-).. Play with it.. </P></BLOCKQUOTE>
+        <P><SPAN class=BodyText>Repeat: (Default Value = 1)</SPAN></P>
+        <BLOCKQUOTE>
+          <P>This specifies how many times to process this effect. This allows 
+          you to run the same effect several times without having to specify 
+          multiple play commands.</P></BLOCKQUOTE>
+        <P><SPAN class=BodyText>Pause: (Default Value = 0)</SPAN></P>
+        <BLOCKQUOTE>
+          <P>Specifies the time to pause (in milliseconds) before moving onto 
+          the next effect in the queue (if there is one) or repeating the 
+          current effect again if it has to be repeated.</P></BLOCKQUOTE>
+        <P>Examples: (These examples assume you have a Light Sequencer on your 
+        table called 'LightSeqAttract').</P>
+        <BLOCKQUOTE>
+          <P><SPAN class=CommentText>' Scroll up, turning all the lights on with 
+          a tail turning them off, repeating twice<BR>LightSeqAttract.Play 
+          SeqUpOn,75,2</SPAN></P>
+          <P class=CommentText>' blink all the lights 5 times (with 250ms wait 
+          between blink)<BR>LightSeqAttract.Play SeqBlinking,,5,250</P>
+          <P class=CommentText>As you see the second example dosn't specify the 
+          TailLength parameter.</P>
+          <P class=CommentText>&nbsp;</P></BLOCKQUOTE></BLOCKQUOTE>
+      <P class=Heading><SPAN class=Heading>Method: </SPAN>.<SPAN 
+      class=Heading>StopPlay()</SPAN></P>
+      <BLOCKQUOTE>
+        <P>This command will flush the Queue and restore the lights to their 
+        correct state as set by you in the table script. It is processed 
+        immediately and the .PlayDone() event is not given to the script.</P>
+        <P>&nbsp;</P></BLOCKQUOTE>
+      <P class=BodyText><SPAN class=Heading>Property: .UpdateInterval</SPAN></P>
+      <BLOCKQUOTE>
+        <P>The .UpdateInterval is the speed at which the Light Sequencer will 
+        process the light effect. The smaller the value the faster the effect 
+        will run. When the .UpdateInterval has expired then the Light Sequencer 
+        will move to the next frame of the current effect it is processing.</P>
+        <P>Values are specified in Milliseconds and valid values are positive 
+        numbers as low as 1 millisecond allowing some very fast effects.</P>
+        <P>If you don't change the .UpdateInterval in the script, the Light 
+        Sequencer will processes all effects at the same speed using the 'Update 
+        Interval' property you set for the Light Sequencer in the Editor.</P>
+        <P>The .UpdateInterval property will not actively change the speed of 
+        the current effect running. It is there so specify the speed of the next 
+        effect queued by the .play command. This each effect in the queue can 
+        run at different speeds, allowing you to mix fast effects with slow 
+        effects.</P>
+        <P>Examples:</P>
+        <P><SPAN class=CommentText>' scroll up, turning all the lights on with a 
+        tail turning them off<BR>LightSeqAttract.UpdateInterval = 
+        10<BR>LightSeqAttract.Play SeqUpOn,75,2<BR>' as about but with a shorter 
+        tail (and quicker)<BR>LightSeqAttract.UpdateInterval = 
+        5<BR>LightSeqAttract.Play SeqUpOn,25,2</SPAN><BR></P>
+        <P>&nbsp;</P></BLOCKQUOTE>
+      <P class=BodyText></P>
+      <P class=Heading>Event: _PlayDone()</P>
+      <BLOCKQUOTE>
+        <P>When the light Sequencer has finished all the effects in the queue it 
+        will restore all the lights in the collection back to correct state (as 
+        per .StopPlay) and will let the script know by signalling an event for 
+        the Light Sequencer that has finished.</P>
+        <P>Example:</P>
+        <P class=CommentText>Sub LightSeqAttract_PlayDone()<BR>' The Light 
+        Sequencer has finished all the effects in the attract sequence<BR>... 
+        <BR>End Sub</P></BLOCKQUOTE>
+      <P class=BodyText>&nbsp;</P>
+      <HR noShade>
+
+      <P class=Heading>What Effects are There? (this bit is LONG!)</P>
+      <P class=BodyText>This section details the actual effects the Light 
+      Sequencer is capable of generating along with little graphic layouts on 
+      how the lights change on the table. It also details any special uses for 
+      the effect parameters and if they are used or not.</P>
+      <TABLE cellSpacing=0 cellPadding=0 align=center border=0>
+        <TBODY>
+        <TR>
+          <TD class=BodyText>
+            <DIV align=center>
+            <P><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r5_c2.gif" 
+            width=78><BR>Example<BR>Layout</P></DIV></TD>
+          <TD class=BodyText width=20>&nbsp; </TD>
+          <TD class=BodyText vAlign=top align=left>
+            <DIV align=left>
+            <P align=left>On the Left you see an little graphical representation 
+            on how the lights change on the playfield. The Darker lights are the 
+            'head' whilst the lighter lights (grey) represent the 'Tail'. The 
+            arrows show the direction the head moves (in this case it is towards 
+            the centre reference point).</P>
+            <P align=left>The light grey lines represent the centre reference 
+            point which doesn't actually have to be in the centre of the table. 
+            Not all effects use the reference point and some only use 1 axis of 
+            it.</P>
+            <P align=left>&nbsp;</P></DIV></TD></TR></TBODY></TABLE>
+      <P class=BodyText>Bring on the effects...</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: ''SeqAllOn'' &amp; ''SeqAllOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r2_c7.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect will either turn On (or Off) all the lights in the 
+            collection. This effect once processed will NOT restore the states 
+            of the lights. It is treated as an open ended effect which never 
+            expires. You will need to Manually call the .StopPlay method to 
+            restore the lights to their real state.</P>
+            <P>This is very useful for Tilt mechanisms where you can turn off 
+            all the lights if the table is tilted and only restore them when you 
+            are ready to start a new ball. Please remember that you can still 
+            set the lights on your table in your script but they won't take 
+            effect until you stop the Light Sequencer (by .StopPlay)</P>
+            <P>TailLength: Not Used</P>
+            <P>Repeat: Not Used</P>
+            <P>Pause: Not Used</P>
+            <P>Example: .Play SeqAllOn</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: ''SeqBlinking'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center>N/A</DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect will blink (turn on, pause, turn off, pause) each 
+            light in the collection.</P>
+            <P>TailLength: Not Used</P>
+            <P>Repeat: The number of times to turn the Lights On and then 
+            Off.</P>
+            <P>Pause: The time (in milliseconds) to pause between changing the 
+            state of a light.</P>
+            <P>Example: .Play </P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: ''SeqRandom'</TD></TR>
+        <TR>
+          <TD align=left width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r2_c8.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left width="80%">
+            <P>This effect randomly turns On and Off lights in the 
+            collection.</P>
+            <P>TailLength: The number of Lights to change per frame. For example 
+            if you have 100 lights in your collection and you set this to 40. 
+            Then 40 lights will change state per frame.</P>
+            <P>Repeat: Not Used</P>
+            <P>Pause: The total time to run the effect for.</P>
+            <P>Example: .Play SeqRandom,40,,4000</P></TD></TR></TBODY></TABLE>
+      <P><BR></P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: ''SeqUpOn'' &amp; ''SeqUpOff' </TD></TR>
+        <TR>
+          <TD align=left width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r3_c1.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting at the bottom of the playfield and moving upwards.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqUpOn, 50, 2</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: ''SeqDownOn'' &amp; ''SeqDownOff' </TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r3_c2.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting at the top of the playfield and moving downwards.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqDownOn, 50, 2</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqRightOn'' &amp; ''SeqRightOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r3_c3.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting on the left edge of the playfield and moving towards the 
+            right edge.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqRightOn, 50, 2</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqLeftOn'' &amp; ''SeqLeftOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r3_c4.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting on the right edge of the playfield and moving towards the 
+            left edge.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqLeftOn, 50, 2</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqDiagUpRightOn'' &amp; 
+          ''SeqDiagUpRightOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r3_c5.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting in the lower left corner of the playfield and moving 
+            upwards diagonally towards the top right corner.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqDiagUpRightOn, 25</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqDiagUpLeftOn'' &amp; 
+        ''SeqDiagUpLeftOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r3_c6.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting in the lower right corner of the playfield and moving 
+            upwards diagonally towards the top left corner.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqDiagUpLeftOn, 25</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqDiagDownRightOn' &amp; 
+            'SeqDiagDownRightOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r3_c7.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting in the top left corner of the playfield and moving 
+            downwards diagonally towards the bottom right corner.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqDiagDownRightOn, 25</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqDiagDownLeftOn' &amp; 
+          'SeqDiagDownLeftOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r3_c8.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting in the top right corner of the playfield and moving 
+            downwards diagonally towards the bottom left corner.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqDiagDownLeftOn, 25</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqMiddleOutHorizOn' &amp; 
+            'SeqMiddleOutHorizOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r3_c9.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting in the horizontal centre reference point and moving out 
+            towards the side edges of the playfield.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqMiddleOutHorizOn, 50</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqMiddleInHorizOn' &amp; 
+            'SeqMiddleInHorizOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r3_c10.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting on the side edges and moving inwards to the horizontal 
+            centre reference point of the playfield.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqMiddleInHorizOn, 50</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqMiddleOutVertOn' &amp; 
+            'SeqMiddleOutVertOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r4_c2.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting in the vertical centre reference point and moving out 
+            towards the top and bottom edges of the playfield.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqMiddleOutVertOn, 50</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqMiddleInVertOn' &amp; 
+          'SeqMiddleInVertOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r4_c1.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting ot the top and bottom edges and moving inwards to the 
+            vertical centre reference point of the playfield.</P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqMiddleInVertOn, 50</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqStripe1HorizOn' &amp; 
+          'SeqStripe1HorizOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r4_c3.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting on the side edge and moving towards the right edge of the 
+            playfield for the top half of the playfield and towards the left 
+            edge for the bottom half of the playfield. The vertical centre 
+            reference point is used for the centre of the table.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqStripe1HorizOn, 25</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqStripe2HorizOn' &amp; 
+          'SeqStripe2HorizOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r4_c4.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting on the side edge and moving towards the left edge of the 
+            playfield for the top half of the playfield and towards the right 
+            edge for the bottom half of the playfield. The vertical centre 
+            reference point is used for the centre of the table.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqStripe2HorizOn, 25</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqStripe1VertOn' &amp; 
+        'SeqStripe1VertOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r4_c5.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting on the bottom edge and moving towards the top edge of the 
+            playfield for the left half of the playfield and towards the bottom 
+            edge for the right half of the playfield. The horizontal centre 
+            reference point is used for the centre of the table.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqStripe1VertOn, 25</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqStripe2VertOn' &amp; 
+        'SeqStripe2VertOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r4_c6.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting on the top edge and moving towards the bottom edge of the 
+            playfield for the left half of the playfield and towards the top 
+            edge for the right half of the playfield. The horizontal centre 
+            reference point is used for the centre of the table.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqStripe2VertOn, 25</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqHatch1HorizOn' &amp; 
+        'SeqHatch1HorizOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r4_c7.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting with all the even cell positions and moving from the left 
+            edge towards the right edge of the playfield and the odd cell 
+            positions moving from the right to the left edge of the 
+            playfield.</P>
+            <P>The overall effect will greatly depend on how lights are placed 
+            on the playfield but should look good no mater what.</P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqHatch1HorizOn, 25</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqHatch2HorizOn' &amp; 
+        'SeqHatch2HorizOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r4_c8.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting with all the even cell positions and moving from the right 
+            edge towards the left edge of the playfield and the odd cell 
+            positions moving from the left to the right edge of the 
+            playfield.</P>
+            <P>The overall effect will greatly depend on how lights are placed 
+            on the playfield but should look good no mater what.</P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqHatch2HorizOn, 25</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqHatch1VertOn' &amp; 
+        'SeqHatch1VertOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r4_c9.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting with all the odd cell positions and moving from the top 
+            edge towards the bottom edge of the playfield and the odd cell 
+            positions moving from the bottom to the top edge of the 
+            playfield.</P>
+            <P>The overall effect will greatly depend on how lights are placed 
+            on the playfield but should look good no mater what.</P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqHatch1VertOn, 75</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqHatch2VertOn' &amp; 
+        'SeqHatch2VertOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r4_c10.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting with all the even cell positions and moving from the top 
+            edge towards the bottom edge of the playfield and the even cell 
+            positions moving from the bottom to the top edge of the 
+            playfield.</P>
+            <P>The overall effect will greatly depend on how lights are placed 
+            on the playfield but should look good no mater what.</P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqHatch2VertOn, 75</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqCircleOutOn' &amp; 'SeqCircleOutOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r5_c1.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting at the centre reference point of the Sequencer and moving 
+            outwards towards the edges.</P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqCircleOutOn,50<BR></P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqCircleInOn' &amp; 'SeqCircleInOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r5_c2.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting at edges of the table and moving inwards towards the centre 
+            reference point of the Sequencer. </P>
+            <P></P>
+            <P>TailLength: Normal Use</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqCircleInOn,50</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqClockRightOn' &amp; 
+        'SeqClockRightOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r5_c3.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from centre reference point and rotating clockwise (much 
+            like a clock hand) until it reaches the start point (angle 0)</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqClockRightOn,180</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqClockLeftOn' &amp; 'SeqClockLeftOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r5_c4.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from centre reference point and rotating anti-clockwise 
+            (much like a clock hand in reverse) until it reaches the start point 
+            (angle 0)</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqClockLeftOn, 180</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqRadarRightOn' &amp; 
+        'SeqRadarRightOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r5_c5.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from bottom edge horizontal centre reference point and 
+            sweeping clockwise (much like a radar scope) until it reaches the 
+            other side of the playfield. The entire playfield is covered by the 
+            sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqRadarRightOn, 45</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqRadarLeftOn' &amp; 'SeqRadarLeftOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r5_c6.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from bottom edge horizontal centre reference point and 
+            sweeping anti-clockwise (much like a radar scope) until it reaches 
+            the other side of the playfield. The entire playfield is covered by 
+            the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqRadarLeftOn, 45</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqWiperRightOn' &amp; 
+        'SeqWiperRightOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r5_c7.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from top edge horizontal centre reference point and 
+            sweeping anti-clockwise (much like a car wiper (if you have a old 
+            car <IMG height=16 src="Light Sequencer_files/wink.gif" width=16 
+            align=absBottom>) until it reaches the other side of the playfield. 
+            The entire playfield is covered by the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqWiperRightOn, 45</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqWiperLeftOn' &amp; 'SeqWiperLeftOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r5_c8.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from top edge horizontal centre reference point and 
+            sweeping clockwise until it reaches the other side of the playfield. 
+            The entire playfield is covered by the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqWiperLeftOn, 45</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqFanLeftUpOn' &amp; 'SeqFanLeftUpOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r5_c9.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from left edge vertical centre reference point and sweeping 
+            anti-clockwise until it reaches the other side of the playfield. The 
+            entire playfield is covered by the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqFanLeftUpOn, 30</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqFanLeftDownOn' &amp; 
+        'SeqFanLeftDownOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=123 
+            src="Light Sequencer_files/lightseqdriver_r5_c10.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from left edge vertical centre reference point and sweeping 
+            clockwise until it reaches the other side of the playfield. The 
+            entire playfield is covered by the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqFanLeftDownOn, 30</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqFanRightUpOn' &amp; 
+        'SeqFanRightUpOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r7_c1.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from right edge vertical centre reference point and 
+            sweeping anti-clockwise until it reaches the other side of the 
+            playfield. The entire playfield is covered by the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqFanRightUpOn, 30</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqFanRightDownOn' &amp; 
+          'SeqFanRightDownOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r7_c2.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from right edge vertical centre reference point and 
+            sweeping clockwise until it reaches the other side of the playfield. 
+            The entire playfield is covered by the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqFanRightDownOn, 30</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqArcBottomLeftUpOn' &amp; 
+            'SeqArcBottomLeftUpOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r7_c3.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from lower left corner of the playfield and sweeping 
+            anti-clockwise until it reaches the other edge of the playfield. The 
+            entire playfield is covered by the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqArcBottomLeftUpOn, 90</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqArcBottomLeftDownOn' &amp; 
+            'SeqArcBottomLeftDownOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r7_c4.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from lower left corner of the playfield and sweeping 
+            clockwise until it reaches the other edge of the playfield. The 
+            entire playfield is covered by the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqArcBottomLeftDownOn, 90</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqArcBottomRightUpOn' &amp; 
+            'SeqArcBottomRightUpOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r7_c5.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from lower right corner of the playfield and sweeping 
+            clockwise until it reaches the other edge of the playfield. The 
+            entire playfield is covered by the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqArcBottomRightUpOn, 90</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqArcBottomRightDownOn' &amp; 
+            'SeqArcBottomRightDownOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r7_c6.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from lower right corner of the playfield and sweeping 
+            anti-clockwise until it reaches the other edge of the playfield. The 
+            entire playfield is covered by the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqArcBottomRightDownOn, 
+90</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqArcTopLeftUpOn' &amp; 
+          'SeqArcTopLeftUpOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r7_c7.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from top left corner of the playfield and sweeping 
+            anti-clockwise until it reaches the other edge of the playfield. The 
+            entire playfield is covered by the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqArcTopLeftUpOn, 90</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqArcTopLeftDownOn' &amp; 
+            'SeqArcTopLeftDownOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r7_c8.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from top left corner of the playfield and sweeping 
+            clockwise until it reaches the other edge of the playfield. The 
+            entire playfield is covered by the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqArcTopLeftDownOn, 90</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqArcTopRightUpOn' &amp; 
+            'SeqArcTopRightUpOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r7_c9.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from top right corner of the playfield and sweeping 
+            clockwise until it reaches the other edge of the playfield. The 
+            entire playfield is covered by the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqArcTopRightUpOn, 90</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqArcTopRightDownOn' &amp; 
+            'SeqArcTopRightDownOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r6_c10.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from top right corner of the playfield and sweeping 
+            anti-clockwise until it reaches the other edge of the playfield. The 
+            entire playfield is covered by the sweep.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqArcTopRightDownOn, 90</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqScrewRightOn' &amp; 
+        'SeqScrewRightOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r9_c1.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from centre reference point of the playfield and screwing 
+            clockwise.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqScrewRightOn, 25</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <TABLE class=BodyText cellSpacing=0 cellPadding=3 width="90%" align=center 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD colSpan=2>Effect: 'SeqScrewLeftOn' &amp; 'SeqScrewLeftOff'</TD></TR>
+        <TR>
+          <TD width="20%">
+            <DIV align=center><IMG height=124 
+            src="Light Sequencer_files/lightseqdriver_r9_c2.gif" 
+          width=78></DIV></TD>
+          <TD vAlign=top align=left>
+            <P>This effect turns On (or Off) all the lights in the collection 
+            starting from centre reference point of the playfield and screwing 
+            anti-clockwise.</P>
+            <P></P>
+            <P>TailLength: This is specified in degrees. Ie. A value of 90 will 
+            follow 90 degrees behind the head effect. 0 (or not specified) means 
+            no 'Tail'</P>
+            <P>Repeat: Normal Use</P>
+            <P>Pause: Normal Use</P>
+            <P>Example: .Play SeqScrewLeftOn, 25</P></TD></TR></TBODY></TABLE>
+      <P>&nbsp;</P>
+      <P class=Heading>Got Any Examples?</P>
+      <P class=BodyText>You can download this very simple table which implements 
+      all of the effects that the Sequencer can perform in a long series of 
+      animation's which also shows what using the same effect at different 
+      speeds can do. I think it looks very impressive but I'm very biased. <IMG 
+      height=16 src="Light Sequencer_files/wink.gif" width=16 
+      align=absBottom></P>
+      <P class=BodyText>Press '5' to start the show and '0' to stop the 
+      Sequencer and reset the Lights to their real state. You will notice that 
+      some lights are on and flashing when you start the table.. The state of 
+      these lights is also shown in a text box on the backglass. This is updated 
+      very regularly so you can see that the true value of the light doesn't 
+      change even though the Sequencer is making all the lights get up and 
+      boogie! (ooh, aaah!)</P>
+      <P class=BodyText>The Best way to really understand the Light Sequencer is 
+      to play the the settings and see what happens.</P>
+      <P class=BodyText>Also having 2 Light Sequencer's running at the same time 
+      with certain effects does look very nice (but this example table doesn't 
+      go into that)</P>
+      <P align=center><A 
+      href="http://members.iinet.net.au/~cleathley/vp/LightSeqTable.zip">Download 
+      Example Table</A> (78k)</P>
+      <P class=CommentText align=center>&nbsp;</P>
+      <P class=CommentText align=center>This page has bit lit up and cycled <IMG 
+      src="" align=absMiddle> 
+times.</P><!-- #EndEditable --></TD></TR></TBODY></TABLE>
+<P>&nbsp;</P><!-- #EndTemplate --></BODY></HTML>

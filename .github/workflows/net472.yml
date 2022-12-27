@@ -1,0 +1,47 @@
+name: .Net 472
+
+on:
+  push:
+    branches: [ main ] # should just build the release when pull request is completed
+#  pull_request:
+#    branches: [ main ]
+
+jobs:
+  release:
+    name: Release
+    strategy:
+      matrix:
+        kind: ['windows']
+        include:
+          - kind: windows
+            os: windows-latest
+            target: win-x86
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v1
+      name: Checkout Code           
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v1
+     
+    - name: Restore NuGet Packages
+      run: nuget restore Vp.LightSequencing.Wpf.sln
+ 
+    - name: Build
+      shell: bash
+      run: |
+        tag=$(git describe --tags --abbrev=0)
+        release_name="VP-LightSequencing-$tag-${{ matrix.target }}"
+        msbuild.exe Vp.LightSequencing.Wpf.sln -p:Configuration=Release -p:DeployOnBuild=true -p:OutputPath="../../../${release_name}/"
+        7z a -tzip "${release_name}.zip" "D:/a/${release_name}/*"                
+
+    - name: Publish
+      uses: softprops/action-gh-release@v1
+      with:
+          tag_name: "0.93"
+          files: "VP-LightSequencing*"
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:clr="clr-namespace:System;assembly=mscorlib">
+
+    <clr:String x:Key="LengthTip">Rough length of this sequence in milliseconds</clr:String>
+
+    <clr:String x:Key="NotUsed">Not Used</clr:String>
+    <clr:String x:Key="SeqBlinkingTip">This effect will blink (turn on, pause, turn off, pause) each light in the collection.</clr:String>
+    <clr:String x:Key="SeqBlinkingTail">Not Used</clr:String>
+    <clr:String x:Key="SeqBlinkingRepeat">Not Used</clr:String>
+    <clr:String x:Key="SeqBlinkingPause">Not Used</clr:String>
+
+    <clr:String x:Key="SeqRandomTip">This effect randomly turns On and Off lights in the collection.</clr:String>
+    <clr:String x:Key="SeqRandomTail">The number of Lights to change per frame. For example if you have 100 lights in your collection and you set this to 40. Then 40 lights will change state per frame</clr:String>
+    <clr:String x:Key="SeqRandomRepeat">Not Used</clr:String>
+    <clr:String x:Key="SeqRandomPause">The total time to run the effect for.</clr:String>
+
+    <clr:String x:Key="SeqUpTip">This effect turns On (or Off) all the lights in the collection starting at the bottom of the playfield and moving upwards.</clr:String>
+    <clr:String x:Key="SeqDownTip">This effect turns On (or Off) all the lights in the collection starting at the top of the playfield and moving downwards.</clr:String>
+    <clr:String x:Key="SeqRightTip">This effect turns On (or Off) all the lights in the collection starting on the left edge of the playfield and moving towards the right edge.</clr:String>
+    <clr:String x:Key="SeqLeftTip">This effect turns On (or Off) all the lights in the collection starting on the right edge of the playfield and moving towards the left edge.</clr:String>
+    <clr:String x:Key="SeqDiagUpRightTip">This effect turns On (or Off) all the lights in the collection starting in the lower left corner of the playfield and moving upwards diagonally towards the top right corner.</clr:String>
+    <clr:String x:Key="SeqDiagUpLeftTip">This effect turns On (or Off) all the lights in the collection starting in the lower right corner of the playfield and moving upwards diagonally towards the top left corner.</clr:String>
+    <clr:String x:Key="SeqDiagDownLeftTip">This effect turns On (or Off) all the lights in the collection starting in the top right corner of the playfield and moving downwards diagonally towards the bottom left corner.</clr:String>
+    <clr:String x:Key="SeqDiagDownRightTip">This effect turns On (or Off) all the lights in the collection starting in the top left corner of the playfield and moving downwards diagonally towards the bottom right corner.</clr:String>
+    <clr:String x:Key="SeqMiddleOutHorizTip">This effect turns On (or Off) all the lights in the collection starting in the horizontal centre reference point and moving out towards the side edges of the playfield.</clr:String>
+    <clr:String x:Key="SeqMiddleInHorizTip">This effect turns On (or Off) all the lights in the collection starting on the side edges and moving inwards to the horizontal centre reference point of the playfield.</clr:String>
+    <clr:String x:Key="SeqMiddleOutVertTip">This effect turns On (or Off) all the lights in the collection starting in the vertical centre reference point and moving out towards the top and bottom edges of the playfield.</clr:String>
+    <clr:String x:Key="SeqMiddleInVertTip">This effect turns On (or Off) all the lights in the collection starting at the top and bottom edges and moving inwards to the vertical centre reference point of the playfield.</clr:String>
+
+    <clr:String x:Key="SeqStripe1HorizTip">This effect turns On (or Off) all the lights in the collection starting on the side edge and moving towards the right edge of the playfield for the top half of the playfield and towards the left edge for the bottom half of the playfield. The vertical centre reference point is used for the centre of the table.</clr:String>
+    <clr:String x:Key="SeqStripe2HorizTip">This effect turns On (or Off) all the lights in the collection starting on the side edge and moving towards the left edge of the playfield for the top half of the playfield and towards the right edge for the bottom half of the playfield. The vertical centre reference point is used for the centre of the table.</clr:String>
+    <clr:String x:Key="SeqStripe1VertTip">This effect turns On (or Off) all the lights in the collection starting on the bottom edge and moving towards the top edge of the playfield for the left half of the playfield and towards the bottom edge for the right half of the playfield. The horizontal centre reference point is used for the centre of the table.</clr:String>
+    <clr:String x:Key="SeqStripe2VertTip">This effect turns On (or Off) all the lights in the collection starting on the top edge and moving towards the bottom edge of the playfield for the left half of the playfield and towards the top edge for the right half of the playfield. The horizontal centre reference point is used for the centre of the table.</clr:String>
+    <clr:String x:Key="SeqHatch1HorizTip">This effect turns On (or Off) all the lights in the collection starting with all the even cell positions and moving from the left edge towards the right edge of the playfield and the odd cell positions moving from the right to the left edge of the playfield.</clr:String>
+    <clr:String x:Key="SeqHatch2HorizTip">This effect turns On (or Off) all the lights in the collection starting with all the even cell positions and moving from the right edge towards the left edge of the playfield and the odd cell positions moving from the left to the right edge of the playfield.</clr:String>
+    <clr:String x:Key="SeqHatch1VertTip">This effect turns On (or Off) all the lights in the collection starting with all the odd cell positions and moving from the top edge towards the bottom edge of the playfield and the odd cell positions moving from the bottom to the top edge of the playfield.</clr:String>
+    <clr:String x:Key="SeqHatch2VertTip">This effect turns On (or Off) all the lights in the collection starting with all the even cell positions and moving from the top edge towards the bottom edge of the playfield and the even cell positions moving from the bottom to the top edge of the playfield.</clr:String>
+
+    <clr:String x:Key="SeqCircleOutTip">This effect turns On (or Off) all the lights in the collection starting at the centre reference point of the Sequencer and moving outwards towards the edges.</clr:String>
+    <clr:String x:Key="SeqCircleInTip">This effect turns On (or Off) all the lights in the collection starting at edges of the table and moving inwards towards the centre reference point of the Sequencer.</clr:String>
+
+    <clr:String x:Key="SeqClockRightTip">This effect turns On (or Off) all the lights in the collection starting from centre reference point and rotating clockwise (much like a clock hand) until it reaches the start point (angle 0)</clr:String>
+    <clr:String x:Key="SeqClockLeftTip">This effect turns On (or Off) all the lights in the collection starting from centre reference point and rotating anti-clockwise (much like a clock hand in reverse) until it reaches the start point (angle 0)</clr:String>
+
+    <clr:String x:Key="SeqRadarRightTip">This effect turns On (or Off) all the lights in the collection starting from bottom edge horizontal centre reference point and sweeping clockwise (much like a radar scope) until it reaches the other side of the playfield. The entire playfield is covered by the sweep.</clr:String>
+    <clr:String x:Key="SeqRadarLeftTip">This effect turns On (or Off) all the lights in the collection starting from bottom edge horizontal centre reference point and sweeping anti-clockwise (much like a radar scope) until it reaches the other side of the playfield. The entire playfield is covered by the sweep.</clr:String>
+    <clr:String x:Key="SeqWiperRightTip">This effect turns On (or Off) all the lights in the collection starting from top edge horizontal centre reference point and sweeping anti-clockwise (much like a car wiper (if you have a old car ) until it reaches the other side of the playfield. The entire playfield is covered by the sweep.</clr:String>
+    <clr:String x:Key="SeqWiperLeftTip">This effect turns On (or Off) all the lights in the collection starting from top edge horizontal centre reference point and sweeping clockwise until it reaches the other side of the playfield. The entire playfield is covered by the sweep.</clr:String>
+
+
+    <clr:String x:Key="SeqFanLeftUpTip">This effect turns On (or Off) all the lights in the collection starting from left edge vertical centre reference point and sweeping anti-clockwise until it reaches the other side of the playfield. The entire playfield is covered by the sweep.</clr:String>
+    <clr:String x:Key="SeqFanRightUpTip">This effect turns On (or Off) all the lights in the collection starting from right edge vertical centre reference point and sweeping anti-clockwise until it reaches the other side of the playfield. The entire playfield is covered by the sweep.></clr:String>
+    <clr:String x:Key="SeqFanLeftDownTip">This effect turns On (or Off) all the lights in the collection starting from left edge vertical centre reference point and sweeping clockwise until it reaches the other side of the playfield. The entire playfield is covered by the sweep.</clr:String>
+    <clr:String x:Key="SeqFanRightDownTip">This effect turns On (or Off) all the lights in the collection starting from right edge vertical centre reference point and sweeping clockwise until it reaches the other side of the playfield. The entire playfield is covered by the sweep.</clr:String>
+
+    <clr:String x:Key="SeqArcBottomLeftUpTip">This effect turns On (or Off) all the lights in the collection starting from lower left corner of the playfield and sweeping anti-clockwise until it reaches the other edge of the playfield. The entire playfield is covered by the sweep.</clr:String>
+    <clr:String x:Key="SeqArcBottomLeftDownTip">his effect turns On (or Off) all the lights in the collection starting from lower left corner of the playfield and sweeping clockwise until it reaches the other edge of the playfield. The entire playfield is covered by the sweep.</clr:String>
+    <clr:String x:Key="SeqArcBottomRightUpTip">This effect turns On (or Off) all the lights in the collection starting from lower right corner of the playfield and sweeping clockwise until it reaches the other edge of the playfield. The entire playfield is covered by the sweep.</clr:String>
+    <clr:String x:Key="SeqArcBottomRightDownTip">This effect turns On (or Off) all the lights in the collection starting from lower right corner of the playfield and sweeping anti-clockwise until it reaches the other edge of the playfield. The entire playfield is covered by the sweep.</clr:String>
+    <clr:String x:Key="SeqArcTopLeftUpTip">This effect turns On (or Off) all the lights in the collection starting from top left corner of the playfield and sweeping anti-clockwise until it reaches the other edge of the playfield. The entire playfield is covered by the sweep.</clr:String>
+    <clr:String x:Key="SeqArcTopLeftDownTip">This effect turns On (or Off) all the lights in the collection starting from top left corner of the playfield and sweeping clockwise until it reaches the other edge of the playfield. The entire playfield is covered by the sweep.</clr:String>
+    <clr:String x:Key="SeqArcTopRightUpTip">This effect turns On (or Off) all the lights in the collection starting from top right corner of the playfield and sweeping clockwise until it reaches the other edge of the playfield. The entire playfield is covered by the sweep.</clr:String>
+    <clr:String x:Key="SeqArcTopRightDownTip">This effect turns On (or Off) all the lights in the collection starting from top right corner of the playfield and sweeping anti-clockwise until it reaches the other edge of the playfield. The entire playfield is covered by the sweep.</clr:String>
+    <clr:String x:Key="SeqScrewRightTip">This effect turns On (or Off) all the lights in the collection starting from centre reference point of the playfield and screwing clockwise.</clr:String>
+    <clr:String x:Key="SeqScrewLeftTip">This effect turns On (or Off) all the lights in the collection starting from centre reference point of the playfield and screwing anti-clockwise.</clr:String>
+
+</ResourceDictionary>

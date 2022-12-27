@@ -1,0 +1,129 @@
+﻿<mah:MetroWindow x:Class="Vp.LightSequencing.Wpf.Shell.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vp.LightSequencing.Wpf.Shell.Views"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:ext="clr-namespace:Vp.LightSequencing.Wpf.Shell.Extensions"
+        xmlns:model="clr-namespace:Vp.LightSequencing.Wpf.Shell.Model" 
+        xmlns:converters="clr-namespace:Vp.LightSequencing.Wpf.Shell.Converters"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        mc:Ignorable="d"
+        Title="{Binding Title}" Width="800" Height="450">
+
+    <mah:MetroWindow.Resources>
+        <converters:LightSeqImageConverter x:Key="lightSeqImageConverter"></converters:LightSeqImageConverter>
+    </mah:MetroWindow.Resources>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" Margin="3" HorizontalAlignment="Left">
+                <Button Command="{Binding LoadShowCommand}" Margin="3">LOAD</Button>
+                <Button Command="{Binding SaveShowCommand}" Margin="3">SAVE</Button>
+                <Button Command="{Binding ClearShowCommand}" Margin="63,3" HorizontalAlignment="Stretch">CLEAR</Button>
+                <Button Command="{Binding ShowGuideCommand}" Margin="3" HorizontalAlignment="Stretch"
+                        ToolTip="Written guide by Black (author of light sequencer)"
+                        >GUIDE</Button>
+            </StackPanel>
+
+            <TextBlock Text="{Binding LampshowInformation}" Margin="3" HorizontalAlignment="Right" Grid.Column="1"/>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" TextElement.FontSize="14" Grid.Row="1" Grid.Column="2">
+            <Label>VP Light Sequencer Name</Label>
+            <TextBox HorizontalContentAlignment="Center" Text="{Binding LightSeqName}"  Margin="5" HorizontalAlignment="Stretch" Width="150"
+                     ToolTip="Enter the name of your Light Sequencer object for script output"/>
+        </StackPanel>
+
+        <Grid Grid.Row="3" Grid.Column="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <DataGrid Grid.Row="0" ItemsSource="{Binding LightSequenceViewModels}" ToolTip=""
+                  AutoGenerateColumns="False" CanUserAddRows="True" 
+                  CanUserReorderColumns="False" CanUserSortColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Interval" Width="1*" Binding="{Binding Interval, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding IntervalTip}"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn Header="SeqName" Width="2*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox SelectedItem="{Binding Name, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding Tip}"
+                                          ItemsSource="{Binding Source={ext:EnumBindingSource {x:Type model:Sequence}}}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" 
+                                                        >
+                                                <Image Source="{Binding ., Converter={StaticResource lightSeqImageConverter}}" 
+                                                       Height="54" Width="45"/>
+                                                <TextBlock Text="{Binding}" MinWidth="100"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Tail" Width="1*" Binding="{Binding Tail, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding TailTip}"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Repeat" Width="1*" Binding="{Binding Repeat, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding RepeatTip}"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Pause" Width="1*" Binding="{Binding Pause, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding PauseTip}"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Length" Width="1*" IsReadOnly="True" Binding="{Binding Length}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{StaticResource LengthTip}"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <GridSplitter Grid.Row="3" Grid.Column="1" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"></GridSplitter>
+
+        <TextBox Text="{Binding Script}" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" Margin="3" MinWidth="300"></TextBox>
+    </Grid>
+</mah:MetroWindow>

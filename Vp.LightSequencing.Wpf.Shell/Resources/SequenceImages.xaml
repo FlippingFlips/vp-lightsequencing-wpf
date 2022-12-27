@@ -1,0 +1,47 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BitmapImage x:Key="SeqAllImg" UriSource="../image/SeqAll.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqArcBottomLeftDownImg" UriSource="../image/SeqArcBottomLeftDown.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqArcBottomLeftUpImg" UriSource="../image/SeqArcBottomLeftUp.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqArcBottomRightDownImg" UriSource="../image/SeqArcBottomRightDown.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqArcBottomRightUpImg" UriSource="../image/SeqArcBottomRightUp.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqArcTopLeftDownImg" UriSource="../image/SeqArcTopLeftDown.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqArcTopLeftUpImg" UriSource="../image/SeqArcTopLeftUp.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqArcTopRightDownImg" UriSource="../image/SeqArcTopRightDown.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqArcTopRightUpImg" UriSource="../image/SeqArcTopRightUp.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqCircleInImg" UriSource="../image/SeqCircleIn.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqCircleOutImg" UriSource="../image/SeqCircleOut.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqClockLeftImg" UriSource="../image/SeqClockLeft.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqClockRightImg" UriSource="../image/SeqClockRight.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqDiagDownLeftImg" UriSource="../image/SeqDiagDownLeft.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqDiagDownRightImg" UriSource="../image/SeqDiagDownRight.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqDiagUpLeftImg" UriSource="../image/SeqDiagUpLeft.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqDiagUpRightImg" UriSource="../image/SeqDiagUpRight.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqDownImg" UriSource="../image/SeqDown.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqFanLeftDownImg" UriSource="../image/SeqFanLeftDown.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqFanLeftUpImg" UriSource="../image/SeqFanLeftUp.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqFanRightDownImg" UriSource="../image/SeqFanRightDown.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqFanRightUpImg" UriSource="../image/SeqFanRightUp.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqHatch1HorizImg" UriSource="../image/SeqHatch1Horiz.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqHatch1VertImg" UriSource="../image/SeqHatch1Vert.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqHatch2HorizImg" UriSource="../image/SeqHatch2Horiz.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqHatch2VertImg" UriSource="../image/SeqHatch2Vert.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqLeftImg" UriSource="../image/SeqLeft.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqMiddleInHorizImg" UriSource="../image/SeqMiddleInHoriz.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqMiddleInVertImg" UriSource="../image/SeqMiddleInVert.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqMiddleOutHorizImg" UriSource="../image/SeqMiddleOutHoriz.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqMiddleOutVertImg" UriSource="../image/SeqMiddleOutVert.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqRadarLeftImg" UriSource="../image/SeqRadarLeft.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqRadarRightImg" UriSource="../image/SeqRadarRight.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqRandomImg" UriSource="../image/SeqRandom.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqRightImg" UriSource="../image/SeqRight.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqScrewLeftImg" UriSource="../image/SeqScrewLeft.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqScrewRightImg" UriSource="../image/SeqScrewRight.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqStripe1HorizImg" UriSource="../image/SeqStripe1Horiz.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqStripe1VertImg" UriSource="../image/SeqStripe1Vert.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqStripe2HorizImg" UriSource="../image/SeqStripe2Horiz.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqStripe2VertImg" UriSource="../image/SeqStripe2Vert.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqUpImg" UriSource="../image/SeqUp.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqWiperLeftImg" UriSource="../image/SeqWiperLeft.gif" x:Shared="True"></BitmapImage>
+    <BitmapImage x:Key="SeqWiperRightImg" UriSource="../image/SeqWiperRight.gif" x:Shared="True"></BitmapImage>
+</ResourceDictionary>
